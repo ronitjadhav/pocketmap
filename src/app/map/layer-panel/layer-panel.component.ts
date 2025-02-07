@@ -11,13 +11,6 @@ import { bootstrapChevronCompactUp, bootstrapChevronDown } from '@ng-icons/boots
   standalone: true,
   imports: [CommonModule, NgIcon],
   providers: [provideIcons({ bootstrapChevronCompactUp, bootstrapChevronDown })],
-  animations: [
-    trigger('collapseAnimation', [
-      state('expanded', style({ height: '*', opacity: 1, padding: '*' })),
-      state('collapsed', style({ height: '0px', opacity: 0, padding: '0px' })),
-      transition('expanded <=> collapsed', animate('150ms ease-in-out'))
-    ])
-  ],
   templateUrl: './layer-panel.component.html',
 })
 export class LayerPanelComponent {
@@ -29,7 +22,7 @@ export class LayerPanelComponent {
   async onToggleLayer(layer: any) {
     // Toggle the visible flag.
     layer.visible = !layer.visible;
-    // Filter for overlay layers that are visible.
+    // Filter for visible overlay layers.
     const visibleOverlays = this.layers
       .filter(l => l.visible)
       .map(l => ({ type: l.type, url: l.url, name: l.name }));
