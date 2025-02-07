@@ -1,0 +1,10 @@
+<!-- src/app/layers/layers.component.html -->
+<div class="layers-container">
+  <h2>Accessible Map Layers</h2>
+  <ul>
+    <li *ngFor="let layer of layers">
+      {{ layer.name }} ({{ layer.type }}) ({{layer.url}})
+    </li>
+  </ul>
+  <div class="error" *ngIf="error">{{ error }}</div>
+</div>
