@@ -4,10 +4,11 @@ import {AuthWidgetComponent} from './components/auth-widget/auth-widget.componen
 import {MapViewComponent} from './map/map-view/map-view.component';
 import {AuthService} from './services/auth.service';
 import {AsyncPipe, NgIf} from '@angular/common';
+import { HomeComponent } from './pages/home/home.component';
 
 @Component({
   selector: 'app-root',
-  imports: [AuthWidgetComponent, MapViewComponent, NgIf, AsyncPipe],
+  imports: [AuthWidgetComponent, MapViewComponent, NgIf, AsyncPipe, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
