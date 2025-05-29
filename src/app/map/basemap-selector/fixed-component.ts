@@ -1,0 +1,51 @@
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { heroMap } from '@ng-icons/heroicons/outline';
+import { MapFacadeService } from '../../services/map-facade.service';
+import { BASEMAP_OPTIONS, BasemapOption } from '../../constants';
+
+@Component({
+  selector: 'app-basemap-selector',
+  standalone: true,
+  imports: [CommonModule, NgIcon],
+  providers: [
+    provideIcons({ heroMap })
+  ],
+  template: `
+    <div class="fixed bottom-4 right-4 z-10">
+      <button (click)="toggleSelector()" class="flex items-center bg-white/10 backdrop-blur-lg border border-white/20 p-2 rounded-lg shadow-2xl hover:bg-white/20 transition-all duration-150">
+        <ng-icon name="heroMap" class="text-black" size="20"></ng-icon>
+      </button>
+      <div *ngIf="isOpen()" class="absolute bottom-full mb-2 right-0 p-2 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-2xl z-50 min-w-[160px]">
+        <div class="grid gap-1">
+          <button 
+            *ngFor="let basemap of basemapOptions" 
+            (click)="selectBasemap(basemap)" 
+            class="flex items-center w-full px-3 py-2 text-sm text-black hover:bg-white/20 rounded-md transition-all duration-150 border border-white/10"
+            [class.bg-blue-500/30]="basemap.name === selectedBasemap().name">
+            {{basemap.name}}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="isOpen()" class="fixed inset-0 z-40" (click)="toggleSelector()"></div>
+    </div>
+  `
+})
+export class BasemapSelectorComponent {
+  isOpen = signal(false);
+  basemapOptions = BASEMAP_OPTIONS;
+  selectedBasemap = signal(BASEMAP_OPTIONS[0]);
+
+  constructor(private mapFacadeService: MapFacadeService) {}
+
+  toggleSelector() {
+    this.isOpen.update(value => !value);
+  }
+
+  async selectBasemap(basemap: BasemapOption) {
+    this.selectedBasemap.set(basemap);
+    await this.mapFacadeService.updateBasemap(basemap);
+    this.isOpen.set(false);
+  }
+}
