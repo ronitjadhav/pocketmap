@@ -1,0 +1,133 @@
+:root {
+  --bg-primary: rgba(255, 255, 255, 0.1);
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --text-primary: #000;
+  --text-secondary: #333;
+  --border-color: rgba(255, 255, 255, 0.2);
+  --backdrop-blur: blur(16px);
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --panel-bg: rgba(255, 255, 255, 0.1);
+  --hover-bg: rgba(255, 255, 255, 0.2);
+  --active-bg: rgba(59, 130, 246, 0.3);
+}
+
+.dark-theme {
+  --bg-primary: rgba(0, 0, 0, 0.1);
+  --bg-secondary: rgba(0, 0, 0, 0.05);
+  --text-primary: #fff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --backdrop-blur: blur(16px);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --panel-bg: rgba(0, 0, 0, 0.3);
+  --hover-bg: rgba(255, 255, 255, 0.1);
+  --active-bg: rgba(59, 130, 246, 0.3);
+}
+
+.light-theme {
+  --bg-primary: rgba(255, 255, 255, 0.1);
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --text-primary: #000;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --border-color: rgba(255, 255, 255, 0.3);
+  --backdrop-blur: blur(16px);
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --panel-bg: rgba(255, 255, 255, 0.3);
+  --hover-bg: rgba(0, 0, 0, 0.05);
+  --active-bg: rgba(59, 130, 246, 0.3);
+}
+
+/* Common theme-aware component styles */
+.theme-panel {
+  background-color: var(--panel-bg);
+  backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transition: all 0.3s ease;
+}
+
+/* OpenLayers controls theming */
+.ol-zoom {
+  background-color: transparent !important;
+  padding: 0 !important;
+  left: unset !important;
+  right: 8px !important;
+  top: unset !important;
+  bottom: 8px !important;
+}
+
+.ol-zoom .ol-zoom-in, 
+.ol-zoom .ol-zoom-out {
+  background-color: var(--panel-bg) !important;
+  backdrop-filter: var(--backdrop-blur) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  margin-right: 8px !important;
+  font-weight: bold !important;
+  transition: all 0.2s ease;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 8px var(--shadow-color) !important;
+  font-size: 18px !important;
+  float: left !important;
+}
+
+.ol-zoom .ol-zoom-in:hover, 
+.ol-zoom .ol-zoom-out:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+.ol-zoom .ol-zoom-in:focus, 
+.ol-zoom .ol-zoom-out:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important;
+}
+
+.ol-zoom {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.ol-zoom .ol-zoom-in,
+.ol-zoom .ol-zoom-out {
+  display: inline-flex !important;
+  margin-right: 8px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Add other OpenLayers controls styling */
+.ol-control {
+  background-color: transparent !important;
+}
+
+.ol-control button {
+  background-color: var(--panel-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+.ol-control button:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+.theme-button {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.theme-button:hover {
+  background-color: var(--hover-bg);
+}
+
+.theme-text {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}

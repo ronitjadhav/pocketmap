@@ -1,7 +1,17 @@
-<app-auth-widget></app-auth-widget>
+
 <div *ngIf="authService.currentUser$ | async as user; else notLoggedIn">
+  <div class="fixed top-4 right-4 z-50 flex items-center">
+    <div class="flex-grow mr-3 min-w-0">
+      <app-toolbar></app-toolbar>
+    </div>
+    <app-auth-widget></app-auth-widget>
+  </div>
   <app-map-view></app-map-view>
 </div>
 <ng-template #notLoggedIn>
   <app-home></app-home>
+  <!-- For non-logged in state, we need the theme toggle in the corner -->
+  <div class="fixed right-5 top-5 z-50 theme-button border rounded-md shadow-sm bg-black/20 backdrop-blur-md">
+    <app-theme-toggle></app-theme-toggle>
+  </div>
 </ng-template>

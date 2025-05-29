@@ -14,9 +14,12 @@ import { LayersService } from '../../services/layers.service';
   template: `
     <div class="relative w-full h-screen">
       <app-map-container></app-map-container>
-      <!-- Place the basemap selector in a suitable location (here, top-left) -->
-      <app-basemap-selector class="absolute top-5 left-5 z-50"></app-basemap-selector>
-      <app-layer-panel [layers]="accessibleOverlays"></app-layer-panel>
+      
+      <div class="absolute bottom-4 left-4 z-50 flex items-end gap-3">
+        <!-- Place the layer panel first, followed by the basemap selector -->
+        <app-layer-panel [layers]="accessibleOverlays"></app-layer-panel>
+        <app-basemap-selector></app-basemap-selector>
+      </div>
     </div>
   `
 })

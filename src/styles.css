@@ -1,6 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
 @import "ol/ol.css";
+@import "./app/styles/themes.css";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Apply a default theme on page load before JavaScript kicks in */
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: white;
+    color: black;
+  }
+}

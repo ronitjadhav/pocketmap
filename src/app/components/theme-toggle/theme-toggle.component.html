@@ -1,0 +1,41 @@
+<div class="fixed top-4 right-4 z-10">
+  <button (click)="toggleSwitcher()" 
+    class="flex items-center justify-center bg-white/10 backdrop-blur-lg border border-white/20 p-2 rounded-lg shadow-2xl hover:bg-white/20 transition-all duration-150"
+    [class.bg-black/10]="isDarkMode">
+    <ng-icon [name]="isDarkMode ? 'heroMoon' : 'heroSun'" [class.text-white]="isDarkMode" [class.text-black]="!isDarkMode" size="20"></ng-icon>
+  </button>
+  
+  <div *ngIf="isOpen"
+    class="absolute top-full mt-2 right-0 p-2 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-2xl z-50 min-w-[160px]"
+    [class.bg-black/10]="isDarkMode" 
+    [class.border-white/20]="isDarkMode" 
+    [class.border-black/20]="!isDarkMode">
+    <div class="grid gap-1">
+      <button (click)="selectTheme('light')"
+        class="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-white/20 rounded-md transition-all duration-150 border border-white/10"
+        [class.text-white]="isDarkMode" 
+        [class.text-black]="!isDarkMode"
+        [class.bg-blue-500/30]="currentTheme === 'light'">
+        <ng-icon name="heroSun" size="16"></ng-icon> Light
+      </button>
+      
+      <button (click)="selectTheme('dark')"
+        class="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-white/20 rounded-md transition-all duration-150 border border-white/10"
+        [class.text-white]="isDarkMode" 
+        [class.text-black]="!isDarkMode"
+        [class.bg-blue-500/30]="currentTheme === 'dark'">
+        <ng-icon name="heroMoon" size="16"></ng-icon> Dark
+      </button>
+      
+      <button (click)="selectTheme('system')"
+        class="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-white/20 rounded-md transition-all duration-150 border border-white/10"
+        [class.text-white]="isDarkMode" 
+        [class.text-black]="!isDarkMode"
+        [class.bg-blue-500/30]="currentTheme === 'system'">
+        <ng-icon name="heroCog6Tooth" size="16"></ng-icon> System
+      </button>
+    </div>
+  </div>
+  
+  <div *ngIf="isOpen" class="fixed inset-0 z-40" (click)="closeDropdown()"></div>
+</div>
