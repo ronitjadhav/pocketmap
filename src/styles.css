@@ -24,3 +24,42 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: black;
   }
 }
+
+/* Responsive utilities for OpenLayers */
+@media (max-width: 640px) {
+  .ol-control {
+    margin: 0.25rem !important;
+  }
+  
+  .ol-scale-line {
+    bottom: 3.5rem !important;
+  }
+  
+  /* Safe area for iOS notches and Android camera cutouts */
+  .ol-viewport {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Smaller toggle switch for mobile */
+  .sm-switch {
+    transform: scale(0.85);
+  }
+  
+  /* Make map controls more compact */
+  .ol-zoom .ol-zoom-in, 
+  .ol-zoom .ol-zoom-out {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Prevent iOS zooming on form controls */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}

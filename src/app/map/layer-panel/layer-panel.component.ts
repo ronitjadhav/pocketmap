@@ -14,7 +14,11 @@ import { ThemeService } from '../../services/theme.service';
   imports: [CommonModule, NgIcon, ToggleSwitchComponent],
   providers: [provideIcons({ bootstrapChevronCompactUp, bootstrapChevronDown })],
   templateUrl: './layer-panel.component.html',
-  styleUrls: [],
+  styles: [`
+    .mobile-layer-panel {
+      min-height: 40px;
+    }
+  `],
   animations: [
     trigger('slideInOut', [
       state('in', style({

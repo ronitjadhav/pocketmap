@@ -18,8 +18,11 @@ import {
   })],
   template: `
     <div class="flex items-center relative h-[52px]" [class.collapsed]="isCollapsed()">
-      <div class="flex items-center h-full theme-panel backdrop-blur-lg rounded-lg overflow-hidden transition-all duration-300"
-           [ngStyle]="{ width: isCollapsed() ? '40px' : '400px' }">
+      <div class="flex items-center h-full theme-panel backdrop-blur-lg rounded-lg overflow-hidden transition-all duration-300 shadow-lg"
+           [ngClass]="{ 
+             'w-[40px]': isCollapsed(), 
+             'w-[280px] sm:w-[350px] md:w-[400px]': !isCollapsed() 
+           }">
         
         <!-- Toggle button with tools icon -->
         <button (click)="toggleCollapse()" 
@@ -45,11 +48,11 @@ import {
         </button>
 
         <!-- Tools container -->
-        <div class="flex items-center gap-4 px-3 overflow-x-auto"
+        <div class="flex items-center gap-4 px-3 overflow-x-auto flex-wrap sm:flex-nowrap"
              [class.opacity-0]="isCollapsed()"
              [class.invisible]="isCollapsed()">
           <span class="text-sm font-medium theme-text whitespace-nowrap">Map Tools</span>
-          <div class="h-4 border-r border-white/10"></div>
+          <div class="h-4 border-r border-white/10 hidden sm:block"></div>
           <span class="text-sm theme-text-secondary whitespace-nowrap">Tools will go here</span>
         </div>
       </div>

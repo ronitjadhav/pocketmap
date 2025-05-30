@@ -1,7 +1,43 @@
 <div>
     <!-- If user is logged in, show logout button with user info (current style) -->
     <ng-container *ngIf="(authService.currentUser$ | async) as user; else notLoggedInContent">
-      <div class="flex items-center gap-3 rounded-lg py-2 px-3 theme-panel backdrop-blur-lg h-[52px]"
+      <!-- Mobile view - Just show avatar with dropdown menu -->
+      <div class="block sm:hidden auth-mobile-menu">
+        <div (click)="toggleMobileMenu()" class="w-10 h-10 rounded-full overflow-hidden theme-panel border border-white/20 flex items-center justify-center cursor-pointer">
+          <div *ngIf="getAvatarUrl(user)" class="w-full h-full">
+            <img [src]="getAvatarUrl(user)" alt="User avatar" class="w-full h-full object-cover" />
+          </div>
+          <div *ngIf="!getAvatarUrl(user)">
+            <ng-icon name="bootstrapPersonCircle" size="24" class="theme-text"></ng-icon>
+          </div>
+        </div>
+        
+        <!-- Mobile dropdown menu -->
+        <div *ngIf="showMobileMenu" class="absolute top-14 right-0 p-3 theme-panel rounded-lg shadow-xl z-50 min-w-[200px] auth-mobile-menu">
+          <div class="flex items-center gap-2 pb-3 mb-3 border-b border-white/10">
+            <div class="flex flex-col">
+              <span class="text-sm font-medium theme-text">{{ user.name || getUserNameFromEmail(user.email) }}</span>
+              <span class="text-xs theme-text-secondary truncate max-w-[160px]">{{ user.email }}</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs theme-text-secondary">Theme</span>
+              <app-theme-toggle></app-theme-toggle>
+            </div>
+            <button
+              (click)="onLogout()"
+              class="w-full py-2 rounded-md shadow-sm transition-all duration-150 text-xs font-medium flex items-center justify-center gap-2 border theme-text backdrop-blur-sm"
+              [ngClass]="'bg-red-500/30 hover:bg-red-600/40 border-red-400/30'">
+              <ng-icon name="bootstrapBoxArrowRight" size="16"></ng-icon>
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Desktop view - Full auth widget -->
+      <div class="hidden sm:flex items-center gap-3 rounded-lg py-2 px-3 theme-panel backdrop-blur-lg h-[52px]"
            [ngClass]="embedded ? 'shadow-xl justify-between w-full' : 'shadow-2xl'">
         <div class="flex items-center gap-2">
           <div *ngIf="getAvatarUrl(user)" class="w-8 h-8 rounded-full overflow-hidden border border-white/20">

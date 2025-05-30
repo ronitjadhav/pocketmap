@@ -24,6 +24,7 @@ export class AuthWidgetComponent implements OnInit, OnDestroy {
   error: string | null = null;
   email = '';
   password = '';
+  showMobileMenu = false; // For mobile dropdown menu
   private loginTriggerSubscription!: Subscription;
   private authSubscription!: Subscription; // To manage auth state changes
 
@@ -112,6 +113,7 @@ export class AuthWidgetComponent implements OnInit, OnDestroy {
   async onLogout(): Promise<void> {
     this.isLoading = true;
     this.error = null;
+    this.showMobileMenu = false;
     try {
       await this.authService.logout();
     } catch (err: any) {
@@ -119,6 +121,25 @@ export class AuthWidgetComponent implements OnInit, OnDestroy {
       console.error('Logout error:', err);
     } finally {
       this.isLoading = false;
+    }
+  }
+  
+  toggleMobileMenu(): void {
+    this.showMobileMenu = !this.showMobileMenu;
+    
+    // Close mobile menu when clicking outside
+    if (this.showMobileMenu) {
+      setTimeout(() => {
+        const closeMenu = (e: MouseEvent) => {
+          if (!e.target) return;
+          const target = e.target as HTMLElement;
+          if (!target.closest('.auth-mobile-menu')) {
+            this.showMobileMenu = false;
+            document.removeEventListener('click', closeMenu);
+          }
+        };
+        document.addEventListener('click', closeMenu);
+      }, 0);
     }
   }
 

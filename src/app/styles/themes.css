@@ -52,9 +52,18 @@
   background-color: transparent !important;
   padding: 0 !important;
   left: unset !important;
-  right: 8px !important;
+  right: 16px !important;
   top: unset !important;
-  bottom: 8px !important;
+  bottom: 16px !important;
+  
+  /* Responsive positioning for mobile */
+  @media (max-width: 640px) {
+    bottom: 16px !important; /* Move to bottom on mobile */
+    right: 8px !important;
+    left: unset !important;
+    top: unset !important;
+    flex-direction: column !important; /* Stack vertically on mobile */
+  }
 }
 
 .ol-zoom .ol-zoom-in, 
@@ -98,6 +107,50 @@
   display: inline-flex !important;
   margin-right: 8px !important;
   margin-bottom: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .ol-zoom {
+    flex-direction: column !important; /* Stack vertically on mobile */
+    bottom: 16px !important;
+    right: 8px !important;
+  }
+  
+  .ol-zoom .ol-zoom-in,
+  .ol-zoom .ol-zoom-out {
+    margin-right: 0 !important;
+    margin-bottom: 8px !important;
+  }
+}
+
+/* Position scale line above zoom controls in bottom left */
+.ol-scale-line {
+  bottom: 16px !important;
+  left: 16px !important;
+}
+
+/* Position attribution in bottom right with no background */
+.ol-attribution {
+  background: transparent !important;
+  bottom: 8px !important;
+  right: 60px !important;
+}
+
+@media (max-width: 640px) {
+  .ol-scale-line {
+    bottom: 8px !important;
+    left: 8px !important;
+  }
+  
+  .ol-attribution {
+    bottom: 4px !important;
+    right: 8px !important;
+  }
+  
+  .ol-attribution button {
+    background-color: var(--panel-bg) !important;
+    backdrop-filter: var(--backdrop-blur) !important;
+  }
 }
 
 /* Add other OpenLayers controls styling */
