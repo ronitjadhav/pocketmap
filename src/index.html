@@ -8,6 +8,18 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script>
+    // Initialize theme based on system preference or saved preference
+    (function() {
+      const savedTheme = localStorage.getItem('pocketmap-theme');
+      if (savedTheme) {
+        document.documentElement.classList.add(savedTheme === 'dark' ? 'dark-theme' : 'light-theme');
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.add(prefersDark ? 'dark-theme' : 'light-theme');
+      }
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

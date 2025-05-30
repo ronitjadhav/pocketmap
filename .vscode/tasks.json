@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Angular Development Server",
+			"type": "shell",
+			"command": "cd /Users/ronitjadhav/Developer/Old/Projects/pocketmap && npm start",
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

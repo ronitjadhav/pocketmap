@@ -14,11 +14,28 @@ import { LayersService } from '../../services/layers.service';
   template: `
     <div class="relative w-full h-screen">
       <app-map-container></app-map-container>
-      <!-- Place the basemap selector in a suitable location (here, top-left) -->
-      <app-basemap-selector class="absolute top-5 left-5 z-50"></app-basemap-selector>
-      <app-layer-panel [layers]="accessibleOverlays"></app-layer-panel>
+      
+      <!-- Layer Panel - Fixed position -->
+      <div class="absolute bottom-4 left-4 z-50">
+        <app-layer-panel [layers]="accessibleOverlays"></app-layer-panel>
+      </div>
+      
+      <!-- Basemap Selector - Fixed position beside layer panel -->
+      <div class="absolute bottom-4 z-50" 
+           [ngClass]="{
+             'left-[calc(16px+100vw-6rem-56px+8px)]': true,
+             'sm:left-[calc(16px+300px+8px)]': true
+           }">
+        <app-basemap-selector></app-basemap-selector>
+      </div>
     </div>
-  `
+  `,
+  styles: [`
+    /* Fixed positioning ensures components don't affect each other */
+    @media (max-width: 640px) {
+      /* Mobile styles if needed */
+    }
+  `]
 })
 export class MapViewComponent implements OnInit {
   // These are the overlay layers fetched from PocketBase.
