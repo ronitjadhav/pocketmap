@@ -7,6 +7,7 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
 import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { FloatingSidebarComponent } from './components/floating-sidebar/floating-sidebar.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     AsyncPipe, 
     HomeComponent,
     ThemeToggleComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    FloatingSidebarComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
